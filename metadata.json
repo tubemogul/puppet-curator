@@ -1,0 +1,16 @@
+{
+  "name": "tubemogul-curator",
+  "version": "0.1.0",
+  "author": "tubemogul",
+  "summary": "Puppet Module for Elasticsearch Curator",
+  "license": "Apache 2.0",
+  "source": "https://github.com/tubemogul/tubemogul-curator",
+  "project_page": "https://github.com/tubemogul/tubemogul-curator",
+  "issues_url": "https://github.com/tubemogul/tubemogul-curator/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ]
+}
