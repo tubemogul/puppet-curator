@@ -46,6 +46,10 @@
 #   Setup the log output. Can be 'default' or 'logstash'.
 #   See : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/logformat.html
 #
+# [*host*]
+#   IP address or resolvable host name or FQDN of Elasticsearch instance. Default: localhost
+#   See : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/host.html
+
 # === Examples
 #
 #   curator::cron { 'logstash':
@@ -71,6 +75,7 @@ define curator::cron(
   $log_file     = '/var/logs/curator.log',
   $log_level    = 'INFO',
   $log_format   = 'default',
+  $host         = 'localhost'
 ) {
 
   include ::curator
@@ -81,6 +86,7 @@ define curator::cron(
   validate_bool($master_only)
   validate_re($log_format, '^default|logstash$')
   validate_re($log_level, '^INFO|WARN|DEBUG|ERROR$')
+  validate_string($host)
 
   # Build flags string
   $master_only_flags = $master_only ? {
@@ -88,7 +94,7 @@ define curator::cron(
     default => '',
   }
 
-  $flags = "${master_only_flags} --logfile=${log_file} --logformat=${log_format} --loglevel=${log_level}"
+  $flags = "${master_only_flags} --logfile=${log_file} --logformat=${log_format} --loglevel=${log_level} --host=${host}"
 
   # Build command string
   $cron_cmd = join(delete_undef_values([$command, $subcommand, $parameters]), ' ')
