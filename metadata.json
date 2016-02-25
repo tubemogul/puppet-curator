@@ -1,7 +1,7 @@
 {
   "name": "tubemogul-curator",
   "version": "0.1.0",
-  "author": "tubemogul",
+  "author": "TubeMogul",
   "summary": "Puppet Module for Elasticsearch Curator",
   "license": "Apache 2.0",
   "source": "https://github.com/tubemogul/tubemogul-curator",
