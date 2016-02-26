@@ -52,7 +52,7 @@ class { 'curator':
     logstash-cleanup => {
       command => 'delete',
       subcommand => 'indices',
-      parameters => '--time-unit days --older-than 7 --timestring '%Y.%m.%d' --prefix logstash-',
+      parameters => '--time-unit days --older-than 7 --timestring '\%Y.\%m.\%d' --prefix logstash-',
       cron_minute => 0,
       cron_jour => 0,
     }
@@ -72,7 +72,7 @@ curator::crons:
   logstash:
     command: 'delete'
     subcommand: 'indices'
-    parameters: "--time-unit days --older-than 7 --timestring '%Y.%m.%d' --prefix logstash-"
+    parameters: "--time-unit days --older-than 7 --timestring '\\%Y.\\%m.\\%d' --prefix logstash-"
     log_file: '/var//curator-elasticsearch-logstash.log'
     cron_minute: 0
     cron_hour: 0
