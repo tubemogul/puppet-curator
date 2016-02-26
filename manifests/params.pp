@@ -12,6 +12,7 @@ class curator::params {
       $package_name = 'elasticsearch-curator'
       $package_provider = 'pip'
       $crons = {}
+      $pip_package = 'python-pip'
     }
     default: {
       fail("${::operatingsystem} not supported")

@@ -49,7 +49,7 @@
 # [*host*]
 #   IP address or resolvable host name or FQDN of Elasticsearch instance. Default: localhost
 #   See : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/host.html
-
+#
 # === Examples
 #
 #   curator::cron { 'logstash':
@@ -61,7 +61,7 @@
 #
 
 define curator::cron(
-  $command,
+  $command     = undef,
   $subcommand  = 'indices',
   $parameters  = undef,
   $cron_minute = '0',
@@ -78,15 +78,20 @@ define curator::cron(
   $host         = 'localhost'
 ) {
 
-  include ::curator
+  include curator
 
-  validate_string($command)
-  validate_string($parameters)
-  validate_re($subcommand, '^indices|snapshots$')
+  if $command == undef { fail('Curator command required to deploy a cronjob.') }
+  if $parameters == undef { fail('Curator parameters required to deploy a cronjob.') }
+
+  validate_string(
+    $command,
+    $host
+  )
   validate_bool($master_only)
+  validate_re($subcommand, '^indices|snapshots$')
   validate_re($log_format, '^default|logstash$')
   validate_re($log_level, '^INFO|WARN|DEBUG|ERROR$')
-  validate_string($host)
+
 
   # Build flags string
   $master_only_flags = $master_only ? {
