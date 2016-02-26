@@ -1,4 +1,9 @@
-####Table of Contents
+[![Build Status](https://travis-ci.org/tubemogul/puppet-curator.svg?branch=master)](https://travis-ci.org/tubemogul/puppet-curator)
+[![Puppet Forge latest release](https://img.shields.io/puppetforge/v/TubeMogul/curator.svg)](https://forge.puppetlabs.com/TubeMogul/curator)
+[![Puppet Forge downloads](https://img.shields.io/puppetforge/dt/TubeMogul/curator.svg)](https://forge.puppetlabs.com/TubeMogul/curator)
+[![Puppet Forge score](https://img.shields.io/puppetforge/f/TubeMogul/curator.svg)](https://forge.puppetlabs.com/TubeMogul/curator/scores)
+
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
@@ -11,39 +16,41 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-##Overview
+## Overview
 
 This module manages Elasticsearch Curator (https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
 
-##Module Description
+## Module Description
 
-The curator module setup Curator via Python pip and manage cronjobs to schedule different Curator commands (https://www.elastic.co/guide/en/elasticsearch/client/curator/current/commands.html)
+The module will install Curator via the Python PIP package and manage the cronjobs to schedule different Curator commands.
 
-##Setup
+See the official Curator documentation for more details : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/commands.html
 
-###What curator affects
+## Setup
 
-* elasticsearch-curator pip package
-* crontab
+### What curator affects
 
-###Setup Requirements
+* Install Python PIP if not present
+* Install elasticsearch-curator PIP package
+* Change the crontab
+
+### Setup Requirements
 
 * The stdlib Puppet library
-* Python pip installed
 
-###Beginning with curator
+### Beginning with curator
 
 See : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/getting-started.html
 
-##Usage
+## Usage
 
-###Install Curator
+### Install Curator
 
 ```
-class {'curator': }
+class { 'curator': }
 ```
 
-###Install Curator with a specific version and deploy jobs
+### Install Curator with a specific version and deploy jobs
 
 ```
 class { 'curator':
@@ -60,7 +67,7 @@ class { 'curator':
 }
 ```
 
-###You can also use Hiera
+### Example using Hiera
 
 ```
 class { 'curator': }
@@ -68,21 +75,25 @@ class { 'curator': }
 
 ```
 ---
+curator::version: 3.3.0
 curator::crons:
   logstash:
     command: 'delete'
     subcommand: 'indices'
-    parameters: "--time-unit days --older-than 7 --timestring '%Y.%m.%d' --prefix logstash-"
-    log_file: '/var//curator-elasticsearch-logstash.log'
-    cron_minute: 0
-    cron_hour: 0
+    parameters: "--time-unit hours --older-than 7 --timestring '\\%Y.\\%m.\\%d.\\%H' --prefix logstash-"
+    cron_minute: '30'
+    cron_hour: '*/1'
+  puppet-report:
+    command: 'delete'
+    parameters: "--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-"
 ```
 
 
-##Limitations
+## Limitations
 
-This module has only been tested with Ubuntu Trusty.
+This module has been tested on Ubuntu and should works on Redhat/CentOS too.
+For Redhat/CentOS, you will need to deploy the EPEL repository before using the module (See : https://fedoraproject.org/wiki/EPEL). This module doesn't manage EPEL.
 
-##Development
+## Development
 
-See the CONTRIBUTING.md file.
+See the CONTRIBUTING.md file. Pull requests are welcome :)
