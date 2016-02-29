@@ -36,7 +36,7 @@ See the official Curator documentation for more details : https://www.elastic.co
 
 ### Setup Requirements
 
-* The stdlib Puppet library
+* puppetlabs/stdlib
 
 ### Beginning with curator
 
@@ -56,12 +56,12 @@ class { 'curator': }
 class { 'curator':
   version => '3.3.0',
   crons   => {
-    logstash-cleanup => {
-      command => 'delete',
-      subcommand => 'indices',
-      parameters => '--time-unit days --older-than 7 --timestring '%Y.%m.%d' --prefix logstash-',
+    'logstash-cleanup' => {
+      command     => 'delete',
+      subcommand  => 'indices',
+      parameters  => "--time-unit days --older-than 7 --timestring '\%Y.\%m.\%d' --prefix logstash-",
       cron_minute => 0,
-      cron_jour => 0,
+      cron_hour   => 0,
     }
   }
 }
@@ -91,7 +91,8 @@ curator::crons:
 
 ## Limitations
 
-This module has been tested on Ubuntu and should works on Redhat/CentOS too.
+This module has been tested on Ubuntu and should work on Redhat/CentOS too.
+
 For Redhat/CentOS, you will need to deploy the EPEL repository before using the module (See : https://fedoraproject.org/wiki/EPEL). This module doesn't manage EPEL.
 
 ## Development
