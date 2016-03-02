@@ -3,16 +3,55 @@
   "version": "1.0.1",
   "author": "TubeMogul Inc.",
   "summary": "Puppet Module for Elasticsearch Curator",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/tubemogul/puppet-curator",
   "project_page": "https://github.com/tubemogul/puppet-curator",
   "issues_url": "https://github.com/tubemogul/puppet-curator/issues",
-  "dependencies": [
+	"tags": [ "curator", "elasticsearch" ],
+	"operatingsystem_support": [
     {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
-    }
-  ],
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+		{
+			"operatingsystem": "Ubuntu",
+			"operatingsystemrelease":
+			[
+				"12.0.4","14.04"
+			]
+		},
+		{
+			"operatingsystem": "Debian",
+			"operatingsystemrelease":
+			[
+				"6","7","8"
+			]
+		}
+	],
+	"dependencies": [ ],
   "requirements": [
     {
       "name": "puppet",
