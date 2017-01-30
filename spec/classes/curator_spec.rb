@@ -20,10 +20,12 @@ describe 'curator' do
         it { is_expected.to contain_class('curator::params') }
         it { is_expected.to contain_class('curator::install') }
 
-        it { is_expected.to contain_package('python-pip')\
-          .with_ensure('present')\
-          .that_comes_before('Package[elasticsearch-curator]')
-        }
+        it do
+          is_expected.to contain_package('python-pip').\
+            with_ensure('present').\
+            that_comes_before('Package[elasticsearch-curator]')
+        end
+
         it { is_expected.to contain_package('elasticsearch-curator').with_provider('pip') }
       end
 
@@ -40,10 +42,12 @@ describe 'curator' do
         end
 
         it { is_expected.to compile.with_all_deps }
-        it { is_expected.to contain_curator__cron('puppet-report')\
-          .with_command('delete')\
-          .with_parameters('--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-')
-        }
+        it do
+          is_expected.to contain_curator__cron('puppet-report').\
+            with_command('delete').\
+            with_parameters('--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-')
+        end
+
         it { is_expected.to contain_cron('cron_curator_puppet-report') }
       end
     end
