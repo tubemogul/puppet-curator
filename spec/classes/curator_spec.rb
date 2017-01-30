@@ -13,17 +13,17 @@ describe 'curator' do
 
       describe "curator class without any parameters on #{osfamily}" do
 
-        it { should compile.with_all_deps }
+        it { is_expected.to compile.with_all_deps }
 
-        it { should contain_class('curator') }
-        it { should contain_class('curator::params') }
-        it { should contain_class('curator::install') }
+        it { is_expected.to contain_class('curator') }
+        it { is_expected.to contain_class('curator::params') }
+        it { is_expected.to contain_class('curator::install') }
 
-        it { should contain_package('python-pip')\
+        it { is_expected.to contain_package('python-pip')\
           .with_ensure('present')\
           .that_comes_before('Package[elasticsearch-curator]')
         }
-        it { should contain_package('elasticsearch-curator').with_provider('pip') }
+        it { is_expected.to contain_package('elasticsearch-curator').with_provider('pip') }
       end
 
       describe "curator with a delete indices cron on #{osfamily}" do
@@ -36,8 +36,8 @@ describe 'curator' do
           }
         }}
 
-        it { should compile.with_all_deps }
-        it { should contain_curator__cron('puppet-report')\
+        it { is_expected.to compile.with_all_deps }
+        it { is_expected.to contain_curator__cron('puppet-report')\
           .with_command('delete')\
           .with_parameters('--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-')
         }
@@ -53,7 +53,7 @@ describe 'curator' do
         operatingsystem: 'Nexenta',
       }}
 
-      it { expect { should contain_package('curator') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+      it { expect { is_expected.to contain_package('curator') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
     end
   end
 end

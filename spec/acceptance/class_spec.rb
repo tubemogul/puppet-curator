@@ -15,12 +15,12 @@ describe 'curator class' do
     end
 
     describe package('curator') do
-      it { should be_installed }
+      it { is_expected.to be_installed }
     end
 
     describe service('curator') do
-      it { should be_enabled }
-      it { should be_running }
+      it { is_expected.to be_enabled }
+      it { is_expected.to be_running }
     end
   end
 end

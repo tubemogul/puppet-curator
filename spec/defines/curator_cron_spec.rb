@@ -30,7 +30,7 @@ describe 'curator::cron', type: :define do
 
   describe 'Curator cron without command' do
     let(:params){{ }}
-    it { should raise_error(Puppet::Error, /Curator command required to deploy a cronjob./) }
+    it { is_expected.to raise_error(Puppet::Error, /Curator command required to deploy a cronjob./) }
   end
 
   describe 'Curator cron without parameters' do
@@ -39,6 +39,6 @@ describe 'curator::cron', type: :define do
         command: 'delete'
       }
     end
-    it { should raise_error(Puppet::Error, /Curator parameters required to deploy a cronjob./) }
+    it { is_expected.to raise_error(Puppet::Error, /Curator parameters required to deploy a cronjob./) }
   end
 end
