@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'curator' do
   context 'supported operating systems' do
-    ['Debian', 'RedHat'].each do |osfamily|
+    %w(Debian RedHat).each do |osfamily|
       let(:facts) do
         {
           osfamily: osfamily,
