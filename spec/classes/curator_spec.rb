@@ -52,7 +52,7 @@ describe 'curator' do
         operatingsystem: 'Nexenta'
       }}
 
-      it { expect { is_expected.to contain_package('curator') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+      it { expect { is_expected.to contain_package('curator') }.to raise_error(Puppet::Error, %r{Nexenta not supported}) }
     end
   end
 end
