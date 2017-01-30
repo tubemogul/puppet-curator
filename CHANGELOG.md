@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix metadata quality
 - Fix a `json_pure` dependency problem in the `Gemfile`
 - Code quality cleanup based on rubocop and rubocop-spec standards
+- Fixed puppet-lint warnings
 
 ### Dropped
 - Removed the `CONTRIBUTORS` file. You can get the contributors via the GitHub API
