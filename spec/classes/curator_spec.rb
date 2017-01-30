@@ -8,7 +8,7 @@ describe 'curator' do
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'trusty',
         lsbdistrelease: '14.04',
-        puppetversion: Puppet.version,
+        puppetversion: Puppet.version
       }}
 
       describe "curator class without any parameters on #{osfamily}" do
@@ -30,7 +30,7 @@ describe 'curator' do
           crons: {
              'puppet-report' => {
                 'command'     => 'delete',
-                'parameters'  => '--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-',
+                'parameters'  => '--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-'
             }
           }
         }}
@@ -49,7 +49,7 @@ describe 'curator' do
     describe 'curator class without any parameters on Solaris/Nexenta' do
       let(:facts) {{
         osfamily: 'Solaris',
-        operatingsystem: 'Nexenta',
+        operatingsystem: 'Nexenta'
       }}
 
       it { expect { is_expected.to contain_package('curator') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
