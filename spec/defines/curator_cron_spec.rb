@@ -1,13 +1,15 @@
 require 'spec_helper'
 
-describe 'curator::cron', :type => :define do
-  let(:facts) {{
-    :osfamily => 'Debian',
-    :lsbdistid => 'Ubuntu',
-    :lsbdistcodename => 'trusty',
-    :lsbdistrelease => '14.04',
-    :puppetversion   => Puppet.version,
-  }}
+describe 'curator::cron', type: :define do
+  let(:facts) do
+    {
+      osfamily: 'Debian',
+      lsbdistid: 'Ubuntu',
+      lsbdistcodename: 'trusty',
+      lsbdistrelease: '14.04',
+      puppetversion: Puppet.version
+    }
+  end
 
   let :pre_condition do
     'class { "curator": }'
@@ -19,8 +21,8 @@ describe 'curator::cron', :type => :define do
   describe 'deploy a Curator cron' do
     let :params do
       {
-        :command => 'delete',
-        :parameters => "--time-unit days --older-than 7 --timestring '\%Y.\%m.\%d' --prefix logstash-"
+        command: 'delete',
+        parameters: "--time-unit days --older-than 7 --timestring '\%Y.\%m.\%d' --prefix logstash-"
       }
     end
     it { is_expected.to contain_class('curator') }
@@ -29,16 +31,16 @@ describe 'curator::cron', :type => :define do
   end
 
   describe 'Curator cron without command' do
-    let(:params){{ }}
-    it { should raise_error(Puppet::Error, /Curator command required to deploy a cronjob./) }
+    let(:params) { {} }
+    it { is_expected.to raise_error(Puppet::Error, %r{Curator command required to deploy a cronjob.}) }
   end
 
   describe 'Curator cron without parameters' do
     let :params do
       {
-        :command => 'delete'
+        command: 'delete'
       }
     end
-    it { should raise_error(Puppet::Error, /Curator parameters required to deploy a cronjob./) }
+    it { is_expected.to raise_error(Puppet::Error, %r{Curator parameters required to deploy a cronjob.}) }
   end
 end

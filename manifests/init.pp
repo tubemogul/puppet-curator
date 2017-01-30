@@ -35,8 +35,8 @@ class curator (
   )
   validate_hash($crons)
 
-  class { 'curator::install': } ->
-  Class['curator']
+  class { '::curator::install': } ->
+  Class['::curator']
 
   create_resources(curator::cron, $crons)
 }

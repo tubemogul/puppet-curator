@@ -78,7 +78,7 @@ define curator::cron(
   $host         = 'localhost'
 ) {
 
-  include curator
+  include ::curator
 
   if $command == undef { fail('Curator command required to deploy a cronjob.') }
   if $parameters == undef { fail('Curator parameters required to deploy a cronjob.') }

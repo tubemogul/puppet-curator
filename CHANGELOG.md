@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Move the changelog to markdown and start using semver
+- The Travis tests matrix has been changed to get quicker tests and integrate
+  rubocop testing for code quality
+- `Gemfile` and `Rakefile` have been refactored
 
 ### Fixed
 - Fix metadata quality
 - Fix a `json_pure` dependency problem in the `Gemfile`
+- Code quality cleanup based on rubocop and rubocop-spec standards
+- Fixed puppet-lint warnings
 
 ### Dropped
 - Removed the `CONTRIBUTORS` file. You can get the contributors via the GitHub API
