@@ -4,11 +4,11 @@ describe 'curator' do
   context 'supported operating systems' do
     ['Debian', 'RedHat'].each do |osfamily|
       let(:facts) {{
-        :osfamily => osfamily,
-        :lsbdistid => 'Ubuntu',
-        :lsbdistcodename => 'trusty',
-        :lsbdistrelease => '14.04',
-        :puppetversion   => Puppet.version,
+        osfamily: osfamily,
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'trusty',
+        lsbdistrelease: '14.04',
+        puppetversion: Puppet.version,
       }}
 
       describe "curator class without any parameters on #{osfamily}" do
@@ -28,7 +28,7 @@ describe 'curator' do
 
       describe "curator with a delete indices cron on #{osfamily}" do
         let(:params) {{
-          :crons => {
+          crons: {
              'puppet-report' => {
                 'command'     => 'delete',
                 'parameters'  => '--time-unit days --older-than 14 --timestring \\%Y.\\%m.\\%d --prefix puppet-report-',
@@ -49,8 +49,8 @@ describe 'curator' do
   context 'unsupported operating system' do
     describe 'curator class without any parameters on Solaris/Nexenta' do
       let(:facts) {{
-        :osfamily        => 'Solaris',
-        :operatingsystem => 'Nexenta',
+        osfamily: 'Solaris',
+        operatingsystem: 'Nexenta',
       }}
 
       it { expect { should contain_package('curator') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
