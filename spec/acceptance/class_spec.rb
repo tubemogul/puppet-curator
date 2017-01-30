@@ -4,7 +4,7 @@ describe 'curator class' do
 
   context 'default parameters' do
     # Using puppet_apply as a helper
-    it 'should work idempotently with no errors' do
+    it 'work idempotently with no errors' do
       pp = <<-EOS
       class { 'curator': }
       EOS
