@@ -46,13 +46,13 @@ See : https://www.elastic.co/guide/en/elasticsearch/client/curator/current/getti
 
 ### Install Curator
 
-```
+```puppet
 class { 'curator': }
 ```
 
 ### Install Curator with a specific version and deploy jobs
 
-```
+```puppet
 class { 'curator':
   version => '3.3.0',
   crons   => {
@@ -69,11 +69,11 @@ class { 'curator':
 
 ### Example using Hiera
 
-```
+```puppet
 class { 'curator': }
 ```
 
-```
+```yaml
 ---
 curator::version: 3.3.0
 curator::crons:
