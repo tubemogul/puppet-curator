@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Added the syntax color for the code blocks in the `README.markdown`
+
 ### Changed
 - Move the changelog to markdown and start using semver
 - The Travis tests matrix has been changed to get quicker tests and integrate
