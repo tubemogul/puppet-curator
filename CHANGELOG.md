@@ -10,7 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fix metadata quality
-- Fix a json_pure dependency problem in the `Gemfile`
+- Fix a `json_pure` dependency problem in the `Gemfile`
+
+### Dropped
+- Removed the `CONTRIBUTORS` file. You can get the contributors via the GitHub API
 
 ## [1.0.1] - 2016-02-29
 ### Fixed
