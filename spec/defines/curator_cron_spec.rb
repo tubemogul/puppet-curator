@@ -25,6 +25,7 @@ describe 'curator::cron', type: :define do
         parameters: "--time-unit days --older-than 7 --timestring '\%Y.\%m.\%d' --prefix logstash-"
       }
     end
+
     it { is_expected.to contain_class('curator') }
     it { is_expected.to contain_curator__cron('logstash') }
     it { is_expected.to contain_cron('cron_curator_logstash') }
@@ -32,6 +33,7 @@ describe 'curator::cron', type: :define do
 
   describe 'Curator cron without command' do
     let(:params) { {} }
+
     it { is_expected.to raise_error(Puppet::Error, %r{Curator command required to deploy a cronjob.}) }
   end
 
@@ -41,6 +43,7 @@ describe 'curator::cron', type: :define do
         command: 'delete'
       }
     end
+
     it { is_expected.to raise_error(Puppet::Error, %r{Curator parameters required to deploy a cronjob.}) }
   end
 end
